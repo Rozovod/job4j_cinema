@@ -1,11 +1,13 @@
 package ru.job4j.cinema.repository;
 
+import org.springframework.stereotype.Repository;
 import org.sql2o.Sql2o;
 import org.sql2o.Sql2oException;
 import ru.job4j.cinema.model.Ticket;
 
 import java.util.Optional;
 
+@Repository
 public class Sql2oTicketRepository implements TicketRepository {
     private final Sql2o sql2o;
 
