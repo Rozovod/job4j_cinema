@@ -1,5 +1,6 @@
 package ru.job4j.cinema.service;
 
+import org.springframework.stereotype.Service;
 import ru.job4j.cinema.dto.FilmSessionDto;
 import ru.job4j.cinema.model.FilmSession;
 import ru.job4j.cinema.repository.FilmSessionRepository;
@@ -7,6 +8,7 @@ import ru.job4j.cinema.repository.FilmSessionRepository;
 import java.util.Collection;
 import java.util.stream.Collectors;
 
+@Service
 public class SimpleFilmSessionService implements FilmSessionService {
     private final FilmSessionRepository filmSessionRepository;
     private final FilmService filmService;
