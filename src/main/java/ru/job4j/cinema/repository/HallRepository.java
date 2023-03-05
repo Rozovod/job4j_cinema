@@ -9,5 +9,7 @@ public interface HallRepository {
 
     Optional<Hall> findById(int id);
 
+    Optional<Hall> findByName(String name);
+
     Collection<Hall> findAll();
 }
