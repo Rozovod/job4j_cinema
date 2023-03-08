@@ -44,7 +44,7 @@ public class TicketController {
         if (ticketOptional.isEmpty()) {
             model.addAttribute("message",
                     """
-                            Не удалось приобрести билет на выбранное место.\s
+                            Не удалось забронировать билет на выбранное место.\s
                             Возможно оно уже занято.\s
                             Попробуйте выбрать другое место.""");
             return "errors/404";

@@ -1,5 +1,7 @@
 package ru.job4j.cinema.repository;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 import org.sql2o.Sql2o;
 import org.sql2o.Sql2oException;
@@ -10,6 +12,7 @@ import java.util.Optional;
 @Repository
 public class Sql2oUserRepository implements UserRepository {
     private final Sql2o sql2o;
+    private static final Logger LOG = LoggerFactory.getLogger(Sql2oUserRepository.class);
 
     public Sql2oUserRepository(Sql2o sql2o) {
         this.sql2o = sql2o;
@@ -17,6 +20,7 @@ public class Sql2oUserRepository implements UserRepository {
 
     @Override
     public Optional<User> save(User user) {
+        Optional<User> userOptional = Optional.empty();
         try (var connection = sql2o.open()) {
             var sql = """
                       INSERT INTO users(name, email, password)
@@ -25,10 +29,11 @@ public class Sql2oUserRepository implements UserRepository {
             var query = connection.createQuery(sql, true).bind(user);
             int generatedId = query.executeUpdate().getKey(Integer.class);
             user.setId(generatedId);
-            return Optional.of(user);
+            userOptional = Optional.of(user);
         } catch (Sql2oException e) {
-            return Optional.empty();
+            LOG.error("Пользователь с такой почтой уже существует", e);
         }
+        return userOptional;
     }
 
     @Override
