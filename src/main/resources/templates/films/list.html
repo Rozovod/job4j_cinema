@@ -51,8 +51,7 @@
                     <tbody>
                     <tr th:each="film: ${films}">
                         <td>
-                            <img th:src="@{/files/{fileId}(fileId=${film.fileId})}" class="w-100"
-                                         alt="No image">
+                            <img th:src="@{/files/{fileId}(fileId=${film.fileId})}" class="w-100" alt="No image">
                         </td>
                         <td th:text="${film.name}" />
                         <td th:text="${film.description}" />
