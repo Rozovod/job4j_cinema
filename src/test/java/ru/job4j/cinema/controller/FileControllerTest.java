@@ -22,7 +22,7 @@ class FileControllerTest {
     @BeforeEach
     public void initServices() {
         fileService = mock(FileService.class);
-        fileController= new FileController(fileService);
+        fileController = new FileController(fileService);
         testFile = new MockMultipartFile("testFile.img", new byte[] {1, 2, 3});
     }
 
